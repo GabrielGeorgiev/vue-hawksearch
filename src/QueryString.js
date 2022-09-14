@@ -63,7 +63,7 @@ export function parseURLparams(widget) {
             pendingSearch.FacetSelections[decodeURIParam(getParamName(param, widget, true))[0]] = constructFacetValue(params.get(param)); // decode
         });
     }
-
+    
     return lodash.pickBy(pendingSearch);
 }
 
