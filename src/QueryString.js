@@ -48,7 +48,11 @@ export function parseURLparams(widget) {
         pendingSearch.FacetSelections = {};
 
         paramList.forEach(param => {
-            pendingSearch.FacetSelections[decodeURIParam(getParamName(param, widget, true))[0]] = decodeURIParam(params.get(param)); // decode
+            if (param === "child_inventory_level") {
+                pendingSearch.FacetSelections[decodeURIParam(getParamName(param, widget, true))[0]] = decodeURIParam([params.get(param)]); // decode
+            } else {
+                pendingSearch.FacetSelections[decodeURIParam(getParamName(param, widget, true))[0]] = decodeURIParam(params.get(param)); // decode
+            }
         });
     }
 
