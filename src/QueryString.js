@@ -155,7 +155,12 @@ function urlStringToParamEntries(searchQuery) {
         if (searchQuery[0] == '?') {
             searchQuery = searchQuery.slice(1);
         }
-        return searchQuery.split('&').map(i => [i.split('=')[0], decodeURIComponent(i.split('=')[1]).replace('+', ' ')]);
+        //replace('%2C', '%252C') to ensure decodeURIParam not braking the facets containing comma
+        return searchQuery.split('&')
+            .map(i => [
+                i.split('=')[0],
+                decodeURIComponent(i.split('=')[1].replace('%2C', '%252C')).replace('+', ' ')
+            ]);
     }
     else {
         return searchQuery
